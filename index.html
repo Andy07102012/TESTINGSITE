@@ -1,1 +1,30 @@
-cfghty e
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { User } from "lucide-react";
+
+export default function SimsClone() {
+  const [mood, setMood] = useState("Happy");
+  const moods = ["Happy", "Sad", "Angry", "Excited", "Bored"];
+
+  const changeMood = () => {
+    const newMood = moods[Math.floor(Math.random() * moods.length)];
+    setMood(newMood);
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-green-100 p-4">
+      <h1 className="text-4xl font-bold mb-6">Sims 4 Clone</h1>
+      <Card className="w-80 p-6 bg-white shadow-xl rounded-2xl">
+        <CardContent className="flex flex-col items-center">
+          <motion.div animate={{ scale: 1.1 }}>
+            <User size={64} className="text-blue-500 mb-4" />
+          </motion.div>
+          <p className="text-xl font-semibold">Mood: {mood}</p>
+          <Button className="mt-4" onClick={changeMood}>Change Mood</Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
